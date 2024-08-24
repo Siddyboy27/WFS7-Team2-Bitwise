@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Reports - Hospital Management</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/other_styles.css">
+    <style>
+        .dashboard-actions {
+            margin: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group select {
+            padding: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        #reportResults {
+            margin-top: 20px;
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar" style="width: 20%; height: 100%;">
+        <h2>Admin Dashboard</h2>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="register_doctor.html">Register Doctor</a></li>
+            <li><a href="update_doctor.html">Update/Remove Doctor</a></li>
+            <li><a href="manage_schedule.html">Manage Doctor Schedule</a></li>
+            <li><a href="manage_appointments.html">Manage Appointments</a></li>
+            <li><a href="generate_reports.html">Generate Reports</a></li>
+            <li><a href="doctor_list.html">Doctor List</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Generate Reports</h1>
+        </div>
+
+        <div class="dashboard-actions">
+            <form id="generateReportsForm">
+                <div class="form-group">
+                    <label for="reportType">Select Report Type:</label>
+                    <select id="reportType" required>
+                        <option value="doctor">Doctor Report</option>
+                        <option value="appointment">Appointment Report</option>
+                        <option value="patient">Patient Report</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-button">Generate Report</button>
+            </form>
+            <div id="reportResults"></div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        document.getElementById('generateReportsForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            generateReport();
+        });
+
+        function generateReport() {
+            const reportType = document.getElementById('reportType').value;
+            const reportResults = document.getElementById('reportResults');
+            reportResults.innerHTML = '';
+
+            const data = {
+                doctors: JSON.parse(localStorage.getItem('doctors')) || [],
+                appointments: JSON.parse(localStorage.getItem('appointments')) || []
+            };
+
+            switch (reportType) {
+                case 'doctor':
+                    generateDoctorReport(data.doctors, data.appointments);
+                    break;
+                case 'appointment':
+                    generateAppointmentReport(data.appointments);
+                    break;
+                case 'patient':
+                    generatePatientReport(data.appointments);
+                    break;
+                default:
+                    reportResults.innerHTML = '<p>Invalid report type selected.</p>';
+            }
+        }
+
+        function generateDoctorReport(doctors, appointments) {
+            const reportResults = document.getElementById('reportResults');
+            reportResults.innerHTML = ''; // Clear previous results
+
+            // Create canvas element
+            const canvas = document.createElement('canvas');
+            reportResults.appendChild(canvas);
+
+            // Count appointments per doctor
+            const appointmentCount = {};
+            appointments.forEach(app => {
+                appointmentCount[app.doctorId] = (appointmentCount[app.doctorId] || 0) + 1;
+            });
+
+            // Map doctor IDs to names
+            const doctorNames = {};
+            doctors.forEach(doc => {
+                doctorNames[doc.id] = doc.name;
+            });
+
+            // Prepare data for chart
+            const labels = Object.keys(appointmentCount).map(id => doctorNames[id] || `Doctor ${id}`);
+            const data = Object.values(appointmentCount);
+
+            const colors = labels.map((_, index) => {
+                const hue = index * 360 / labels.length;
+                return `hsl(${hue}, 70%, 70%)`;
+            });
+
+            console.log('Doctor Report Data:', { labels, data, colors });
+
+            // Render pie chart
+            new Chart(canvas, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Number of Appointments per Doctor',
+                        data: data,
+                        backgroundColor: colors, // Use generated colors
+                        borderColor: '#fff',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (tooltipItem) {
+                                    return `${tooltipItem.label}: ${tooltipItem.raw}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+        }
+
+        function generateColors(count) {
+            const colors = [];
+            for (let i = 0; i < count; i++) {
+                colors.push(`hsl(${Math.random() * 360}, 70%, 70%)`);
+            }
+            return colors;
+        }
+
+        function generateAppointmentReport(appointments) {
+            const reportResults = document.getElementById('reportResults');
+            reportResults.innerHTML = ''; // Clear previous results
+
+            // Create canvas element
+            const canvas = document.createElement('canvas');
+            reportResults.appendChild(canvas);
+
+            const appointmentData = appointments.reduce((acc, app) => {
+                acc[app.date] = (acc[app.date] || 0) + 1;
+                return acc;
+            }, {});
+
+            new Chart(canvas, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(appointmentData),
+                    datasets: [{
+                        label: 'Appointments per Day',
+                        data: Object.values(appointmentData),
+                        backgroundColor: '#42A5F5'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false,
+                        }
+                    }
+                }
+            });
+        }
+
+        function generatePatientReport(appointments) {
+            const reportResults = document.getElementById('reportResults');
+            reportResults.innerHTML = ''; // Clear previous results
+
+            // Create canvas element
+            const canvas = document.createElement('canvas');
+            reportResults.appendChild(canvas);
+
+            const patientData = appointments.reduce((acc, app) => {
+                acc[app.patientName] = (acc[app.patientName] || 0) + 1;
+                return acc;
+            }, {});
+
+            new Chart(canvas, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(patientData),
+                    datasets: [{
+                        label: 'Appointments per Patient',
+                        data: Object.values(patientData),
+                        backgroundColor: '#66BB6A'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false,
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

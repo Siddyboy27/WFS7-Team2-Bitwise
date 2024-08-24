@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suggest Medications - Hospital Management</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/other_styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Doctor Dashboard</h2>
+        <ul>
+            <li><a href="schedule.html">Add Schedule</a></li>
+            <li><a href="appointments.html">View Appointments</a></li>
+            <li><a href="tests.html">Suggest Medical Tests</a></li>
+            <li><a href="medications.html">Suggest Medications</a></li>
+            <li><a href="notifications.html">Notifications</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Suggest Medications</h1>
+        </div>
+        <div class="dashboard-actions">
+            <form id="medicationForm">
+                <div class="form-group">
+                    <label for="patientId">Patient ID:</label>
+                    <input type="text" id="patientId" required>
+                </div>
+                <div class="form-group">
+                    <label for="medicationName">Medication Name:</label>
+                    <input type="text" id="medicationName" required>
+                </div>
+                <button type="submit" class="submit-button">Suggest Medication</button>
+            </form>
+        </div>
+    </div>
+    <script src="./js/doctor_dashboard.js"></script>
+</body>
+</html>

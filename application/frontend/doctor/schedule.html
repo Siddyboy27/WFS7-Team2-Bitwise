@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Schedule - Doctor Dashboard</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/other_styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Doctor Dashboard</h2>
+        <ul>
+            <li><a href="schedule.html">Add Schedule</a></li>
+            <li><a href="./appointments.html">View Appointments</a></li>
+            <li><a href="./tests.html">Suggest Medical Tests</a></li>
+            <li><a href="./medications.html">Suggest Medications</a></li>
+            <li><a href="./notifications.html">Notifications</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Add Schedule</h1>
+        </div>
+
+        <div class="schedule-form">
+            <form id="scheduleForm">
+                <div class="form-group">
+                    <label for="doctorId">Doctor ID:</label>
+                    <input type="text" id="doctorId" name="doctorId" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="workingHoursStart">Working Hours Start:</label>
+                    <input type="time" id="workingHoursStart" name="workingHoursStart" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="workingHoursEnd">Working Hours End:</label>
+                    <input type="time" id="workingHoursEnd" name="workingHoursEnd" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="breakTimeStart">Break Time Start:</label>
+                    <input type="time" id="breakTimeStart" name="breakTimeStart" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="breakTimeEnd">Break Time End:</label>
+                    <input type="time" id="breakTimeEnd" name="breakTimeEnd" required>
+                </div>
+
+                <button type="submit" class="submit-button">Save Schedule</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Hospital Management System</p>
+    </footer>
+
+    <script src="./js/doctor_dashboard.js"></script>
+</body>
+</html>

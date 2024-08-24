@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Appointments - Hospital Management</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/other_styles.css">
+</head>
+
+<body>
+    <div class="sidebar" style="width: 20%; height: 100%;">
+        <h2>Admin Dashboard</h2>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="register_doctor.html">Register Doctor</a></li>
+            <li><a href="update_doctor.html">Update/Remove Doctor</a></li>
+            <li><a href="manage_schedule.html">Manage Doctor Schedule</a></li>
+            <li><a href="manage_appointments.html">Manage Appointments</a></li>
+            <li><a href="generate_reports.html">Generate Reports</a></li>
+            <li><a href="doctor_list.html">Doctor List</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Manage Appointments</h1>
+        </div>
+
+        <div class="dashboard-actions">
+            <form id="selectDoctorForAppointments">
+                <div class="form-group">
+                    <label for="doctorId">Doctor ID:</label>
+                    <input type="text" id="doctorId" required>
+                </div>
+                <button type="submit" class="submit-button">Select Doctor</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        document.getElementById('selectDoctorForAppointments').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const doctorId = document.getElementById('doctorId').value;
+            window.location.href = `appointments_list.html?doctorId=${doctorId}`;
+        });
+    </script>
+</body>
+
+</html>

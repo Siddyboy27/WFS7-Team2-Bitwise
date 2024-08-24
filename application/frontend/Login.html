@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Hospital Management System</title>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Storing credentials in localStorage if not already stored
+        if (!localStorage.getItem("users")) {
+          const users = [
+            { id: 1, username: "admin", password: "admin123", role: "admin" },
+            { id: 2, username: "staff", password: "staff123", role: "staff" },
+            {
+              id: 3,
+              username: "doctor",
+              password: "doctor123",
+              role: "doctor",
+            },
+          ];
+          localStorage.setItem("users", JSON.stringify(users));
+        }
+      });
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Link to your CSS file -->
+  </head>
+  <body>
+    <div class="login-background">
+      <div class="login-container">
+        <h2>Hospital Management System Login</h2>
+        <form id="loginForm">
+          <label for="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            required
+            placeholder="Enter your username"
+          />
+
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            placeholder="Enter your password"
+          />
+
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script src="login.js"></script>
+</html>

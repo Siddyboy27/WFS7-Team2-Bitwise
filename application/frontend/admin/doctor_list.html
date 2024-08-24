@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor List - Hospital Management</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/other_styles.css">
+    <style>
+        /* Inline CSS for specific page styling */
+
+        .doctor-list-container {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .doctor-search {
+            margin-bottom: 20px;
+        }
+
+        .doctor-search input[type="text"] {
+            width: calc(100% - 120px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .doctor-search button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #74ebd5;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .doctor-search button:hover {
+            background-color: #009688;
+        }
+
+        .doctor-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .doctor-list li {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .doctor-list h3 {
+            margin: 0;
+            color: #00796b;
+        }
+
+        .doctor-list p {
+            margin: 5px 0;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar" style="width: 20%; height: 100%;">
+        <h2>Admin Dashboard</h2>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="register_doctor.html">Register Doctor</a></li>
+            <li><a href="update_doctor.html">Update/Remove Doctor</a></li>
+            <li><a href="manage_schedule.html">Manage Doctor Schedule</a></li>
+            <li><a href="manage_appointments.html">Manage Appointments</a></li>
+            <li><a href="generate_reports.html">Generate Reports</a></li>
+            <li><a href="doctor_list.html">Doctor List</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Doctor List</h1>
+        </div>
+
+        <div class="doctor-list-container">
+            <div class="doctor-search">
+                <input type="text" id="searchName" placeholder="Search by name">
+                <button onclick="searchDoctors()">Search</button>
+            </div>
+            <ul id="doctorList" class="doctor-list"></ul>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            displayDoctors();
+        });
+
+        document.getElementById('searchName').addEventListener('input', function () {
+            searchDoctors();
+        });
+    </script>
+
+</body>
+
+</html>
