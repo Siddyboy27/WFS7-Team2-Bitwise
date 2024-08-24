@@ -1,305 +1,408 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Appointments List - Hospital Management</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/other_styles.css">
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/other_styles.css" />
     <style>
-        /* Add any specific styles here if necessary */
-        .main-content {
-            margin: 5%;
-            padding: 20px;
-        }
+      /* Add any specific styles here if necessary */
+      .main-content {
+        margin: 5%;
+        padding: 20px;
+      }
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
 
-        .cancel-button {
-            background-color: #f44336;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
+      .cancel-button {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
 
-        .dashboard-actions {
-            margin-bottom: 20px;
-        }
+      .dashboard-actions {
+        margin-bottom: 20px;
+      }
 
-        .form-group {
-            margin-bottom: 10px;
-        }
+      .form-group {
+        margin-bottom: 10px;
+      }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+      }
 
-        .form-group input {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
+      .form-group input {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+      }
 
-        .submit-button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            margin-bottom: 1rem;
-        }
+      .submit-button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        margin-bottom: 1rem;
+      }
 
-        #appointmentsList {
-            margin-bottom: 20px;
-        }
+      #appointmentsList {
+        margin-bottom: 20px;
+      }
 
-        .appointment {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 10px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 60px;
-            color: rgb(39, 38, 38);
-            font-weight: bold;
-        }
+      .appointment {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        color: rgb(39, 38, 38);
+        font-weight: bold;
+      }
 
-        .appointment p {
-            margin: 0;
-        }
+      .appointment p {
+        margin: 0;
+      }
 
-        .appointment button {
-            background-color: #2196F3;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            margin-left: auto;
-        }
+      .appointment button {
+        background-color: #2196f3;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        margin-left: auto;
+      }
 
-        .appointment input[type="checkbox"] {
-            margin-right: 10px;
-        }
+      .appointment input[type="checkbox"] {
+        margin-right: 10px;
+      }
 
-        .delete-button {
-            background-color: #f44336;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
+      .delete-button {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 4px;
+      }
 
-        .appointment-edit {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+      .appointment-edit {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
 
-        .appointment-edit input {
-            width: calc(100% - 20px);
-        }
+      .appointment-edit input {
+        width: calc(100% - 20px);
+      }
 
-        .appointment-edit button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
+      .appointment-edit button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-    <div class="sidebar" style="width: 20%; height: 100%;">
-        <h2>Admin Dashboard</h2>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="register_doctor.html">Register Doctor</a></li>
-            <li><a href="update_doctor.html">Update/Remove Doctor</a></li>
-            <li><a href="manage_schedule.html">Manage Doctor Schedule</a></li>
-            <li><a href="manage_appointments.html">Manage Appointments</a></li>
-            <li><a href="generate_reports.html">Generate Reports</a></li>
-            <li><a href="doctor_list.html">Doctor List</a></li>
-        </ul>
+  <body>
+    <div class="sidebar" style="width: 20%; height: 100%">
+      <h2>Admin Dashboard</h2>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="register_doctor.html">Register Doctor</a></li>
+        <li><a href="update_doctor.html">Update/Remove Doctor</a></li>
+        <li><a href="manage_schedule.html">Manage Doctor Schedule</a></li>
+        <li><a href="manage_appointments.html">Manage Appointments</a></li>
+        <li><a href="generate_reports.html">Generate Reports</a></li>
+        <li><a href="doctor_list.html">Doctor List</a></li>
+      </ul>
     </div>
 
     <div class="main-content">
-        <div class="header">
-            <h1>Appointments for Doctor ID: <span id="doctorId"></span></h1>
-            <button class="cancel-button" onclick="window.location.href='manage_appointments.html'">Cancel</button>
-        </div>
+      <div class="header">
+        <h1>Appointments for Doctor ID: <span id="doctorId"></span></h1>
+        <button
+          class="cancel-button"
+          onclick="window.location.href='manage_appointments.html'"
+        >
+          Cancel
+        </button>
+      </div>
 
-        <button class="submit-button" id="showAddForm">Add Appointment</button>
+      <button class="submit-button" id="showAddForm">Add Appointment</button>
 
-        <div class="dashboard-actions" id="addAppointmentContainer" style="display: none;">
-            <form id="addAppointmentForm">
-                <div class="form-group">
-                    <label for="patientName">Patient Name:</label>
-                    <input type="text" id="patientName" required>
-                </div>
-                <div class="form-group">
-                    <label for="appointmentDate">Date:</label>
-                    <input type="date" id="appointmentDate" required>
-                </div>
-                <div class="form-group">
-                    <label for="appointmentTime">Time:</label>
-                    <input type="time" id="appointmentTime" required>
-                </div>
-                <button type="submit" class="submit-button">Add Appointment</button>
-            </form>
-        </div>
+      <div
+        class="dashboard-actions"
+        id="addAppointmentContainer"
+        style="display: none"
+      >
+        <form id="addAppointmentForm">
+          <div class="form-group">
+            <label for="patientId">Patient ID:</label>
+            <input type="text" id="patientId" required />
+          </div>
+          <div class="form-group">
+            <label for="patientName">Patient Name:</label>
+            <input type="text" id="patientName" disabled />
+          </div>
+          <div class="form-group">
+            <label for="appointmentDate">Date:</label>
+            <input type="date" id="appointmentDate" required />
+          </div>
+          <div class="form-group">
+            <label for="appointmentTime">Time:</label>
+            <input type="time" id="appointmentTime" required />
+          </div>
+          <button type="submit" class="submit-button">Add Appointment</button>
+        </form>
+      </div>
 
-        <div id="appointmentsList"></div>
+      <div id="appointmentsList"></div>
 
-        <button class="delete-button" id="deleteSelectedAppointments">Delete Selected</button>
+      <button class="delete-button" id="deleteSelectedAppointments">
+        Delete Selected
+      </button>
     </div>
 
     <script src="js/script.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const doctorId = urlParams.get('doctorId');
-            document.getElementById('doctorId').textContent = doctorId;
+      document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const doctorId = urlParams.get("doctorId");
+        document.getElementById("doctorId").textContent = doctorId;
 
-            // Load appointments
-            loadAppointments(doctorId);
+        // Load appointments
+        loadAppointments(doctorId);
 
-            // Handle add appointment form
-            document.getElementById('addAppointmentForm').addEventListener('submit', function (event) {
-                event.preventDefault();
-                const patientName = document.getElementById('patientName').value;
-                const date = document.getElementById('appointmentDate').value;
-                const time = document.getElementById('appointmentTime').value;
-                addAppointment(doctorId, patientName, date, time);
-            });
+        // Handle add appointment form
+        document
+          .getElementById("addAppointmentForm")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+            const patientId = document.getElementById("patientId").value;
+            const date = document.getElementById("appointmentDate").value;
+            const time = document.getElementById("appointmentTime").value;
+            addAppointment(doctorId, patientId, date, time);
+          });
+        document
+          .getElementById("patientId")
+          .addEventListener("blur", function () {
+            const patientId = this.value;
+            const patientNameField = document.getElementById("patientName");
+            const patientName = getPatientNameById(patientId);
+            if (patientName) {
+              patientNameField.value = patientName;
+            } else {
+              alert("Patient ID not found.");
+              patientNameField.value = "";
+            }
+          });
 
-            // Handle delete selected appointments
-            document.getElementById('deleteSelectedAppointments').addEventListener('click', function () {
-                const checkboxes = document.querySelectorAll('input[name="appointmentCheckbox"]:checked');
-                const appointmentIds = Array.from(checkboxes).map(checkbox => checkbox.dataset.appointmentId);
-                deleteAppointments(appointmentIds);
-            });
+        // Handle delete selected appointments
+        document
+          .getElementById("deleteSelectedAppointments")
+          .addEventListener("click", function () {
+            const checkboxes = document.querySelectorAll(
+              'input[name="appointmentCheckbox"]:checked'
+            );
+            const appointmentIds = Array.from(checkboxes).map(
+              (checkbox) => checkbox.dataset.appointmentId
+            );
+            deleteAppointments(appointmentIds);
+          });
 
-            // Show/Hide add appointment form
-            document.getElementById('showAddForm').addEventListener('click', function () {
-                const formContainer = document.getElementById('addAppointmentContainer');
-                if (formContainer.style.display === 'none') {
-                    formContainer.style.display = 'block';
-                    this.textContent = 'Hide Form';
-                } else {
-                    formContainer.style.display = 'none';
-                    this.textContent = 'Add Appointment';
-                }
-            });
-        });
+        // Show/Hide add appointment form
+        document
+          .getElementById("showAddForm")
+          .addEventListener("click", function () {
+            const formContainer = document.getElementById(
+              "addAppointmentContainer"
+            );
+            if (formContainer.style.display === "none") {
+              formContainer.style.display = "block";
+              this.textContent = "Hide Form";
+            } else {
+              formContainer.style.display = "none";
+              this.textContent = "Add Appointment";
+            }
+          });
+      });
 
-        function loadAppointments(doctorId) {
-            const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
-            const filteredAppointments = appointments.filter(app => app.doctorId == doctorId);
-            const appointmentsList = document.getElementById('appointmentsList');
-            appointmentsList.innerHTML = '';
+      function loadAppointments(doctorId) {
+        const appointments =
+          JSON.parse(localStorage.getItem("appointments")) || [];
+        const filteredAppointments = appointments.filter(
+          (app) => app.doctorId == doctorId
+        );
+        const appointmentsList = document.getElementById("appointmentsList");
+        appointmentsList.innerHTML = "";
 
-            filteredAppointments.forEach(appointment => {
-                appointmentsList.innerHTML += `
+        filteredAppointments.forEach((appointment) => {
+          appointmentsList.innerHTML += `
                     <div class="appointment">
-                        <input type="checkbox" name="appointmentCheckbox" data-appointment-id="${appointment.id}">
+                        <input type="checkbox" name="appointmentCheckbox" data-appointment-id="${appointment.app_id}">
                         <p>Patient: ${appointment.patientName}</p>
-                        <p>Date: ${appointment.date}</p>
-                        <p>Time: ${appointment.time}</p>
-                        <button onclick="editAppointment('${appointment.id}')">Update</button>
+                        <p>Date: ${appointment.appointmentDate}</p>
+                        <p>Time: ${appointment.appointmentTime}</p>
+                        <button onclick="editAppointment('${appointment.app_id}')">Update</button>
                     </div>
                 `;
-            });
+        });
+      }
+
+      function addAppointment(doctorId, patientId, date, time) {
+        const appointments =
+          JSON.parse(localStorage.getItem("appointments")) || [];
+        if (
+          appointments.some(
+            (app) =>
+              app.doctorId == doctorId &&
+              app.appointmentTime == time &&
+              app.appointmentDate == date
+          )
+        ) {
+          alert("An appointment already exists at this time.");
+          return;
         }
+        const newAppointment = {
+          app_id: appointments.length
+            ? appointments[appointments.length - 1].id + 1
+            : 1,
+          patientId: patientId,
+          patientName: getPatientNameById(patientId),
+          doctorId: doctorId,
+          doctorName: getDoctorNameById(doctorId),
+          appointmentDate: date,
+          appointmentTime: time,
+        };
+        appointments.push(newAppointment);
+        localStorage.setItem("appointments", JSON.stringify(appointments));
+        alert("Appointment added successfully!");
+        loadAppointments(doctorId);
+        location.reload();
+      }
 
-        function addAppointment(doctorId, patientName, date, time) {
-            const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
-            if (appointments.some(app => app.doctorId == doctorId && app.time == time && app.date == date)) {
-                alert('An appointment already exists at this time.');
-                return;
-            }
-            const newAppointment = {
-                id: appointments.length ? appointments[appointments.length - 1].id + 1 : 1,
-                doctorId: doctorId,
-                patientName: patientName,
-                date: date,
-                time: time
-            };
-            appointments.push(newAppointment);
-            localStorage.setItem('appointments', JSON.stringify(appointments));
-            alert('Appointment added successfully!');
-            loadAppointments(doctorId);
-            location.reload();
-        }
+      function deleteAppointments(appointmentIds) {
+        let appointments =
+          JSON.parse(localStorage.getItem("appointments")) || [];
+        appointments = appointments.filter(
+          (app) => !appointmentIds.includes(app.app_id.toString())
+        );
+        localStorage.setItem("appointments", JSON.stringify(appointments));
+        alert("Selected appointments deleted successfully!");
+        loadAppointments(document.getElementById("doctorId").textContent);
+      }
 
-        function deleteAppointments(appointmentIds) {
-            let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
-            appointments = appointments.filter(app => !appointmentIds.includes(app.id.toString()));
-            localStorage.setItem('appointments', JSON.stringify(appointments));
-            alert('Selected appointments deleted successfully!');
-            loadAppointments(document.getElementById('doctorId').textContent);
-        }
+      function editAppointment(appointmentId) {
+        const appointments =
+          JSON.parse(localStorage.getItem("appointments")) || [];
+          console.log(appointments);
+          
+        const appointment = appointments.find((app) => app.app_id == appointmentId);
 
-        function editAppointment(appointmentId) {
-            const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
-            const appointment = appointments.find(app => app.id == appointmentId);
-
-            if (appointment) {
-                const appointmentDiv = document.querySelector(`input[data-appointment-id="${appointmentId}"]`).parentElement;
-                appointmentDiv.innerHTML = `
+        if (appointment) {
+          const appointmentDiv = document.querySelector(
+            `input[data-appointment-id="${appointmentId}"]`
+          ).parentElement;
+          appointmentDiv.innerHTML = `
                     <div class="appointment-edit">
-                        <input type="text" id="editPatientName" value="${appointment.patientName}">
-                        <input type="date" id="editDate" value="${appointment.date}">
-                        <input type="time" id="editTime" value="${appointment.time}">
+                        <input type="text" id="editPatientID" value="${appointment.patientId}" onblur="changeName()">
+                        <input type="text" id="editPatientName" value="${appointment.patientName}" disabled >
+                        <input type="date" id="editDate" value="${appointment.appointmentDate}">
+                        <input type="time" id="editTime" value="${appointment.appointmentTime}">
                         <button onclick="saveAppointment('${appointmentId}')">Save</button>
                         <button onclick="cancelEdit()">Cancel</button>
                     </div>
                 `;
-            } else {
-                alert('Appointment not found');
-            }
+        } else {
+          alert("Appointment not found");
         }
+      }
 
-        function saveAppointment(appointmentId) {
-            const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
-            const appointmentIndex = appointments.findIndex(app => app.id == appointmentId);
-            if (appointmentIndex !== -1) {
-                const newPatientName = document.getElementById('editPatientName').value;
-                const newDate = document.getElementById('editDate').value;
-                const newTime = document.getElementById('editTime').value;
+      function changeName(){
+        console.log("change name function called");
+        
+        const patientId = document.getElementById("editPatientID").value;
+        const patientName = getDoctorNameById(patientId);
+        if(patientName)
+        document.getElementById("editPatientName").value = patientName;
+      else
+        alert("No such patient exists.")
 
-                if (appointments.some(app => app.doctorId == appointments[appointmentIndex].doctorId && app.time == newTime && app.date == newDate && app.id != appointmentId)) {
-                    alert('An appointment already exists at this time.');
-                    return;
-                }
-                appointments[appointmentIndex] = {
-                    ...appointments[appointmentIndex],
-                    patientName: newPatientName,
-                    date: newDate,
-                    time: newTime
-                };
-                localStorage.setItem('appointments', JSON.stringify(appointments));
-                alert('Appointment updated successfully!');
-                loadAppointments(document.getElementById('doctorId').textContent);
-            } else {
-                alert('Appointment not found');
-            }
+      }
+
+
+      function saveAppointment(appointmentId) {
+        const appointments =
+          JSON.parse(localStorage.getItem("appointments")) || [];
+        const appointmentIndex = appointments.findIndex(
+          (app) => app.app_id == appointmentId
+        );
+        if (appointmentIndex !== -1) {
+          const newPatientName =
+            document.getElementById("editPatientName").value;
+          const newDate = document.getElementById("editDate").value;
+          const newTime = document.getElementById("editTime").value;
+
+          if (
+            appointments.some(
+              (app) =>
+                app.doctorId == appointments[appointmentIndex].doctorId &&
+                app.appointmentTime == newTime &&
+                app.appointmentDate == newDate &&
+                app.app_id != appointmentId
+            )
+          ) {
+            alert("An appointment already exists at this time.");
+            return;
+          }
+          appointments[appointmentIndex] = {
+            ...appointments[appointmentIndex],
+            patientName: newPatientName,
+            appointmentDate: newDate,
+            appointmentTime: newTime,
+          };
+          localStorage.setItem("appointments", JSON.stringify(appointments));
+          alert("Appointment updated successfully!");
+          loadAppointments(document.getElementById("doctorId").textContent);
+        } else {
+          alert("Appointment not found");
         }
+      }
 
-        function cancelEdit() {
-            loadAppointments(document.getElementById('doctorId').textContent);
-        }
+      function cancelEdit() {
+        loadAppointments(document.getElementById("doctorId").textContent);
+      }
+
+      function getPatientNameById(patientId) {
+        const patients = JSON.parse(localStorage.getItem("patients")) || [];
+        const patient = patients.find((p) => p.patientId === patientId);
+        return patient ? patient.patientName : null;
+      }
+
+      function getDoctorNameById(doctorId) {
+        const doctors = JSON.parse(localStorage.getItem("doctors")) || [];
+        console.log(`doctorID searched is ${doctorId}`);
+        console.log(doctors);
+
+        const doctor = doctors.find((d) => d.doctorId == doctorId);
+
+        return doctor ? doctor.doctorName : null;
+      }
     </script>
-</body>
-
+  </body>
 </html>

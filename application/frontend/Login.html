@@ -8,19 +8,31 @@
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // Storing credentials in localStorage if not already stored
-        if (!localStorage.getItem("users")) {
-          const users = [
-            { id: 1, username: "admin", password: "admin123", role: "admin" },
-            { id: 2, username: "staff", password: "staff123", role: "staff" },
-            {
-              id: 3,
-              username: "doctor",
-              password: "doctor123",
-              role: "doctor",
-            },
-          ];
-          localStorage.setItem("users", JSON.stringify(users));
-        }
+        
+        const users = [
+          {
+            id: 1,
+            Name: "Sidharth",
+            username: "admin",
+            password: "admin123",
+            role: "admin",
+          },
+          {
+            id: 2,
+            Name: "Jose",
+            username: "staff",
+            password: "staff123",
+            role: "staff",
+          },
+          {
+            id: 3,
+            Name: "Stephen",
+            username: "doctor",
+            password: "doctor123",
+            role: "doctor",
+          },
+        ];
+        localStorage.setItem("users", JSON.stringify(users));
       });
     </script>
     <link rel="stylesheet" href="styles.css" />

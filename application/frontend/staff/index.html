@@ -22,7 +22,7 @@
 
     <div class="main-content">
         <div class="header">
-            <h1>Welcome, Staff Member</h1>
+            <h1>Welcome, <span id="staffName"></span></h1>
             <div class="profile">
                 <img src="staff-profile.jpg" alt="Staff Profile Picture">
                 <p>Staff Name</p>
@@ -51,4 +51,10 @@
         <p>&copy; 2024 Hospital Management System</p>
     </footer>
 </body>
+<script>
+    const staff=JSON.parse(localStorage.getItem("session_user"));
+    console.log(staff);
+    
+    document.getElementById("staffName").innerHTML = staff.Name;
+</script>
 </html>

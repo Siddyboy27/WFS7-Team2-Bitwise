@@ -24,7 +24,7 @@
 
     <div class="main-content">
         <div class="header">
-            <h1>Welcome, Admin</h1>
+            <h1>Welcome, <span id="adminName"></span></h1>
             <div class="profile">
                 <img src="admin-profile.jpg" alt="Admin Profile Picture">
                 <p>Admin Name</p>
@@ -66,5 +66,11 @@
     </div>
     </div>
 </body>
+
+<script>
+    // Get the admin name from the session
+    const admin=JSON.parse(localStorage.getItem("session_user"));
+    document.getElementById("adminName").innerHTML=admin.Name;
+</script>
 
 </html>

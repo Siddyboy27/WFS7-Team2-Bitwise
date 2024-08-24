@@ -206,11 +206,11 @@ function registerDoctor(name, specialization, email, phone) {
     }
 
     const doctor = {
-        id: doctor_id,
-        name: name,
-        specialization: specialization,
-        email: email,
-        phone: phone
+        doctorId: doctor_id,
+        doctorName: name,
+        doctorSpecialization: specialization,
+        doctorEmail: email,
+        doctorPhone: phone
     };
 
     doctors.push(doctor);
@@ -225,8 +225,11 @@ function registerDoctor(name, specialization, email, phone) {
 
     localStorage.setItem('doctors', JSON.stringify(doctors));
     localStorage.setItem('schedules', JSON.stringify(schedules));
+    console.log(JSON.parse(localStorage.getItem('doctors')));
+    
     alert('Doctor registered successfully with default schedule!');
     location.reload();
+
 }
 
 
@@ -240,12 +243,12 @@ function displayDoctors() {
     doctors.forEach(doctor => {
         const doctorItem = document.createElement('li');
         doctorItem.innerHTML = `
-            <h3>${doctor.name}</h3>
+            <h3>${doctor.doctorName}</h3>
             <br>
-            <p>Id: ${doctor.id}</p>
-            <p>Specialization: ${doctor.specialization}</p>
-            <p>Email: ${doctor.email}</p>
-            <p>Phone: ${doctor.phone}</p>
+            <p>Id: ${doctor.doctorId}</p>
+            <p>Specialization: ${doctor.doctorSpecialization}</p>
+            <p>Email: ${doctor.doctorEmail}</p>
+            <p>Phone: ${doctor.doctorPhone}</p>
         `;
         doctorList.appendChild(doctorItem);
     });
@@ -253,7 +256,7 @@ function displayDoctors() {
 
 // Function to remove a doctor
 function removeDoctor(doctorId) {
-    doctors = doctors.filter(doctor => doctor.id != doctorId);
+    doctors = doctors.filter(doctor => doctor.doctorId != doctorId);
     localStorage.setItem('doctors', JSON.stringify(doctors));
 
     // Also remove the doctor's schedule and appointments
@@ -268,7 +271,7 @@ function removeDoctor(doctorId) {
 
 // Function to enable editing of doctor details
 function updateDoctor(doctorId) {
-    const doctor = doctors.find(doc => doc.id == doctorId);
+    const doctor = doctors.find(doc => doc.doctorId == doctorId);
     if (doctor) {
         document.getElementById('doctorDetails').innerHTML = `
             <div class="doctor-details">
@@ -289,12 +292,12 @@ function updateDoctor(doctorId) {
 
 // Function to save the updated doctor details
 function saveDoctor(doctorId) {
-    const doctorIndex = doctors.findIndex(doc => doc.id == doctorId);
+    const doctorIndex = doctors.findIndex(doc => doc.doctorId == doctorId);
     if (doctorIndex !== -1) {
-        doctors[doctorIndex].name = document.getElementById('editName').value;
-        doctors[doctorIndex].specialization = document.getElementById('editSpecialization').value;
-        doctors[doctorIndex].email = document.getElementById('editEmail').value;
-        doctors[doctorIndex].phone = document.getElementById('editPhone').value;
+        doctors[doctorIndex].doctorName = document.getElementById('editName').value;
+        doctors[doctorIndex].doctorSpecialization = document.getElementById('editSpecialization').value;
+        doctors[doctorIndex].doctorEmail = document.getElementById('editEmail').value;
+        doctors[doctorIndex].doctorPhone = document.getElementById('editPhone').value;
 
         localStorage.setItem('doctors', JSON.stringify(doctors));
         alert('Doctor details updated successfully!');
@@ -306,14 +309,14 @@ function saveDoctor(doctorId) {
 
 // Function to cancel the update and restore original details
 function cancelUpdate(doctorId) {
-    const doctor = doctors.find(doc => doc.id == doctorId);
+    const doctor = doctors.find(doc => doc.doctorId == doctorId);
     if (doctor) {
         document.getElementById('doctorDetails').innerHTML = `
             <div class="doctor-details">
-                <h3>${doctor.name}</h3>
-                <p>Specialization: ${doctor.specialization}</p>
-                <p>Email: ${doctor.email}</p>
-                <p>Phone: ${doctor.phone}</p>
+                <h3>${doctor.doctorName}</h3>
+                <p>Specialization: ${doctor.doctorSpecialization}</p>
+                <p>Email: ${doctor.doctorEmail}</p>
+                <p>Phone: ${doctor.doctorPhone}</p>
                 <div class="button-group">
                     <button class="update-button" onclick="updateDoctor('${doctorId}')">Update Doctor</button>
                     <button class="remove-button" onclick="removeDoctor('${doctorId}')">Remove Doctor</button>
@@ -325,13 +328,13 @@ function cancelUpdate(doctorId) {
 
 // Function to show schedule details with an "Update" button
 function updateDoctorScheduleView(doctorId) {
-    const doctor = doctors.find(doc => doc.id == doctorId);
+    const doctor = doctors.find(doc => doc.doctorId == doctorId);
     const schedule = schedules.find(sch => sch.doctorId == doctorId);
 
     if (doctor && schedule) {
         document.getElementById('scheduleDetails').innerHTML = `
             <div class="schedule-details">
-                <h3>Schedule for Dr. ${doctor.name}</h3><br>
+                <h3>Schedule for Dr. ${doctor.doctorName}</h3><br>
                 <p>Working Hours: 
                     <span id="displayWorkingHours">${schedule.workingHours}</span>
                     <input type="time" id="editWorkingHoursStart" value="${schedule.workingHours.split(' to ')[0]}" style="display: none;">

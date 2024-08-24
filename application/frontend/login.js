@@ -18,16 +18,19 @@ document.addEventListener("DOMContentLoaded", function () {
       if (user) {
         switch (user.role) {
           case "admin":
-            window.location.href = "/admin"; // Redirect to Admin Dashboard
+            window.location.href = "http://127.0.0.1:5500/application/frontend/admin"; // Redirect to Admin Dashboard
             break;
           case "staff":
-            window.location.href = "/staff"; // Redirect to Staff Dashboard
+            window.location.href = "http://127.0.0.1:5500/application/frontend/staff"; // Redirect to Staff Dashboard
             break;
           case "doctor":
-            window.location.href = "/doctor"; // Redirect to Doctor Dashboard
+            window.location.href = "http://127.0.0.1:5500/application/frontend/doctor"; // Redirect to Doctor Dashboard
             break;
           
         }
+
+        localStorage.setItem("session_user",JSON.stringify(user))
+
 
         
       } else {
