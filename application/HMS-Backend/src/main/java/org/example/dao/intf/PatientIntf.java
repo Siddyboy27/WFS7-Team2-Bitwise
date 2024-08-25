@@ -1,6 +1,6 @@
 package org.example.dao.intf;
 
-import models.Patient;
+import org.example.models.Patient;
 
 import java.util.List;
 

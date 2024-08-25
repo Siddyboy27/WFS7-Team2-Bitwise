@@ -1,7 +1,7 @@
 package org.example.dao.impl;
 
-import dao.intf.DoctorIntf;
-import models.Doctor;
+import org.example.dao.intf.DoctorIntf;
+import org.example.models.Doctor;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -58,7 +58,7 @@ public class DoctorJDBCImpl implements DoctorIntf {
     }
 
     @Override
-    public void addDoctor(Doctor doctor) {
+    public void addDoctor(Doctor doctor) throws SQLException{
         try(Connection conn = getConnection()){
             PreparedStatement ps = conn.prepareStatement("INSERT INTO doctor (id, name, email, password, address, phoneNumber, specialization, experience, rating) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
             ps.setInt(1, doctor.getId());

@@ -1,7 +1,7 @@
 package org.example.dao.impl;
 
-import dao.intf.PatientIntf;
-import models.Patient;
+import org.example.dao.intf.PatientIntf;
+import org.example.models.Patient;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

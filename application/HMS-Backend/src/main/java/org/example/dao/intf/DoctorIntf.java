@@ -1,13 +1,14 @@
 package org.example.dao.intf;
 
-import models.Doctor;
+import org.example.models.Doctor;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface DoctorIntf {
     Doctor getDoctorById(int doctorID);
     List<Doctor> getDoctorsBySpecialization(String specialization);
-    void addDoctor(Doctor doctor);
+    void addDoctor(Doctor doctor) throws SQLException;
     boolean updateDoctor(Doctor doctor);
     boolean deleteDoctor(int doctorID);
 

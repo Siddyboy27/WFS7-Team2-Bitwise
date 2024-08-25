@@ -4,13 +4,14 @@ import org.example.dao.impl.DoctorListImpl;
 import org.example.dao.intf.DoctorIntf;
 import org.example.models.Doctor;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class DoctorBL {
     // Correcting the interface to DoctorIntf
     private final DoctorIntf doctorDAO = (DoctorIntf) new DoctorListImpl();
 
-    public void addDoctor(Doctor doctor) {
+    public void addDoctor(Doctor doctor) throws SQLException {
         doctorDAO.addDoctor(doctor);
     }
 

@@ -10,8 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import jdbc.hospitalmanagementsystem.models.Patient;
-import jdbc.hospitalmanagementsystem.dao.impl.PatientJDBCImpl;
+import org.example.models.Patient;
+import org.example.dao.impl.PatientJDBCImpl;
 
 import org.junit.jupiter.api.Test;
 
@@ -65,7 +65,7 @@ public class PatientJdbcDaoTest {
         testPrescriptions.add("Medication X (2024-08-25)");
         List<String> testTests = new ArrayList<>();
         testTests.add("Blood Test (2024-08-25)");
-        Patient newPatient = new Patient(0, testName, testEmail, testAddress, testGender, testPhoneNumber, testPrescriptions, testTests.toString()); // Note: using toString() for tests list
+        Patient newPatient = new Patient(0, testName, testEmail, testAddress, testGender, testPhoneNumber, testPrescriptions.toString(), testTests.toString()); // Note: using toString() for tests list
 
         // Act
         PatientJDBCImpl patientDAO = new PatientJDBCImpl();

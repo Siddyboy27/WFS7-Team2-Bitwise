@@ -7,26 +7,34 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import java.sql.SQLException;
-import jdbc.hospitalmanagementsystem.factory.DoctorFactory;
-import jdbc.hospitalmanagementsystem.models.Doctor;
-import jdbc.hospitalmanagementsystem.dao.impl.DoctorJDBCImpl;
+import org.example.dao.factory.DoctorFactory;
+import org.example.models.Doctor;
+import org.example.dao.impl.DoctorJDBCImpl;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 public class DoctorJdbcDaoTest {
-    private DoctorJDBCImpl doctorDAO = new DoctorFactory.getDoctorFactory("jdbc");
+    private DoctorJDBCImpl doctorDAO;
+
+    {
+        try {
+            doctorDAO = (DoctorJDBCImpl) DoctorFactory.getDoctorFactory("jdbc");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Test
     public void testGetDoctorById_ValidId() throws SQLException {
         int doctorId = 1; // Replace with a known valid ID
-        Doctor expectedDoctor = new Doctor(validDoctorId, "John Doe", "johndoe@example.com", "password", "123 Main St", "555-123-4567", "Cardiology", 5, 4.8); // Replace with expected values
+        Doctor expectedDoctor = new Doctor(doctorId, "John Doe", "johndoe@example.com", "password", "123 Main St", "555-123-4567", "Cardiology", 5, 4.8); // Replace with expected values
 
         // Act
-        Doctor actualDoctor = doctorDAO.getDoctorById(validDoctorId);
+        Doctor actualDoctor = doctorDAO.getDoctorById(doctorId);
 
         // Assert
-        assertNotNull(actualDoctor);
-        assertEquals(expectedDoctor, actualDoctor);
+//        assertNotNull(actualDoctor);
+        assertEquals(expectedDoctor, actualDoctor, "Not the same doctor");
     }
 
     @Test

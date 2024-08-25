@@ -1,7 +1,7 @@
 package org.example.dao.impl;
 
-import dao.intf.PatientIntf;
-import models.Patient;
+import org.example.dao.intf.PatientIntf;
+import org.example.models.Patient;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -18,7 +18,7 @@ public class PatientJDBCImpl implements PatientIntf {
         }
     }
 
-    Connection getConnection() throws SQLException {
+    public Connection getConnection() throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb3?useSSL=false",
                                                     "root", "Sakshi@123");
         

@@ -1,7 +1,7 @@
 package org.example.dao.impl;
 
-import dao.intf.DoctorIntf;
-import models.Doctor;
+import org.example.dao.intf.DoctorIntf;
+import org.example.models.Doctor;
 
 import java.util.ArrayList;
 import java.util.List;
