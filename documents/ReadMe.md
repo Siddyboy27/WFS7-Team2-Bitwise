@@ -1,4 +1,4 @@
-Here’s the `README.md` file formatted properly as Markdown:
+
 
 ```markdown
 # Hospital Management System
